@@ -1,0 +1,90 @@
+{% extends "product/productbase.html" %}
+{% load static %}
+
+{% block title %}
+  {% if product %}{{ product.nazwa }}{% else %}Stomatologia{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<h2 class="menu">Stomatologia</h2>
+  <div id="main">
+	<div id="profilo">
+	<ul>
+		<li id="topik">Materiały</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+    <ul>
+		<li id="topik">Narzędzia</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	<ul>
+		<li id="topik">Znieczulenia i leki</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	<ul>
+		<li id="topik">Pasty i płukanki</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	<ul>
+		<li id="topik">Pozostałe</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	</div>
+   </div>
+   
+  <div id="sidebar">
+    <h4 {% if not product %}class="selected"{% endif %}>
+	<a href="{% url "product:jh_list" %}">Wszystkie</a>
+	</h4>
+    
+	 <table class="cart">
+	 <h4>{{ producent }}</h4>
+      <tbody>
+	  
+      {% for p in products %}
+          <tr>
+            <td><a href="{{ p.get_absolute_url }}">{{ p.nazwa }}</a></td>
+			<td>{{ p.cotojest }}</td>
+			<td>{{ p.producent }}</td>
+          </tr>
+      {% endfor %}
+     </tbody>
+	 </table>
+    </div>
+	
+	<div id="midleside">
+	<h4>Producent</h4>
+	
+	  	  
+      {% for p in producents %}
+           <p><a href="{{ p.get_absolute_url }}stomatologia">{{ p.nazwa }}</a></p>
+			
+        {% endfor %}
+     
+   </div>
+	<div id="leftside">
+	<h4>Co to jest?</h4>
+	<form action="." method="post">
+	
+	<p>{{ filtrcotojest_form.cotojest }}</p>
+	<p><input type="submit" value="Filtruj"></p>
+	
+	{% csrf_token %}<br><br>
+		
+	</form>
+	
+
+	</div>
+  
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja danych firmowych{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Wprowadzenie danych firmowych</h1>
+  
+  
+  <p class="acount">Za pomocą poniższego formularza możesz edytować dane firmowe dla wystawienia faktury</p>
+  <div class="login-form">
+  {% if request.user.profile.klient.nip == '0000000001' %}
+  <form action="." method="post" enctype="multipart/form-data">
+    {{ new_klient_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Zapisz zmiany"></p>
+  </form>
+  {% else %}
+  <p class="acount">{{ request.user.profil.klient.nazwa }}</p>
+  <p class="acount">{{ klient.firma }}</p>
+  <p class="acount">{{ klient.adres }}</p>
+  <p class="acount">{{ klient.kodpocztowy }}</p>
+  <p class="acount">{{ klient.miejscowosc }}</p>
+  <p class="acount"><a href="{{ klient.nip }}">{{ klient.nip }}</a></p>
+  {% endif %}
+  </div>
+  {% endblock %}

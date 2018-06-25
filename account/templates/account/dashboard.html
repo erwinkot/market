@@ -1,0 +1,10 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Panel startowy{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Panel startowy &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ request.user.profile.klient.nip }}</h1>
+  
+  <p class="acount">Witaj w panelu startowym COOD21. Możesz <a href="{% url "edit" %}">edytować profil</a> lub <a href="{% url "password_change" %}">zmienić hasło</a>.</p>
+	
+{% endblock %}

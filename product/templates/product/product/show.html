@@ -1,0 +1,23 @@
+{% extends "platma/platmabase.html" %}
+{% load static %}
+
+{% block title %}
+  {% if product %}{{ product.nazwa }}{% else %}Start{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="sidebar">
+    <h3>Bloki</h3>
+    <ul>
+      <li>
+        <a href="{% url "platma:jh_list" %}">Produkty</a>
+      </li>
+      </ul>
+  </div>
+  <div id="main" class="product-list">
+    
+	
+   </div>
+    
+  </div>
+{% endblock %}

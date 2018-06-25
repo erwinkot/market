@@ -1,0 +1,81 @@
+{% extends "product/productbase.html" %}
+{% load static %}
+
+{% block title %}
+  {% if product %}{{ product.nazwa }}{% else %}Jednorazówka{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2 class="menu">Jednorazówka</h2>
+  <div id="main">
+	<span id="profilo">
+	<ul>
+		<li id="topik">Dezynfekcja</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+    <ul>
+		<li id="topik">Sterylizacja </li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	<ul>
+		<li id="topik">Środki czystości</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	<ul>
+		<li id="topik">Opatrunki</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	<ul>
+		<li id="topik">Pozostałe</li>
+		<li>Fajowe</li>
+		<li>Super gutes</li>
+		<li>Takie sobie</li>
+	</ul>
+	</span>
+   </div>
+   
+  <div id="sidebar">
+    <h4 {% if not product %}class="selected"{% endif %}>
+	<a href="{% url "product:jh_list" %}">Wszystkie</a>
+	</h4>
+	 <table class="cart">
+      <tbody>
+      {% for p in products %}
+          <tr>
+            <td><a href="{{ p.get_absolute_url }}">{{ p.nazwa }}</a></td>
+			<td>{{ p.cotojest }}</td>
+			<td>{{ p.producent }}</td>
+          </tr>
+      {% endfor %}
+     </tbody>
+	 </table>
+    </div>
+	<div id="midleside">
+	<h4>Producent</h4>
+	{% for p in producents %}
+           <p><a href="{{ p.get_absolute_url }}jed">{{ p.nazwa }}</a></p>
+			
+        {% endfor %}
+   </div>
+	<div id="leftside">
+	<h4>Co to jest?</h4>
+	<form action="." method="post">
+	
+	<p>{{ filtrcotojest_form.cotojest }}</p>
+	<p><input type="submit" value="Filtruj"></p>
+	
+	{% csrf_token %}<br><br>
+		
+	</form>
+
+	</div>
+  
+{% endblock %}

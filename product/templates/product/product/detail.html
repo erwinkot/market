@@ -1,0 +1,21 @@
+{% extends "product/productbase.html" %}
+{% load static %}
+
+{% block title %}
+  {% if product %}{{ product.title }}{% else %}Produkt{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="product-detail">
+    <img src="{% if jh.image %}{{ jh.image.url }}{% else %}
+{% static "img/no_image.png" %}{% endif %}">
+    <h2>{{ p.nazwa }}{{ jh.label }} {{ jh.name }} {{ jh.opis1 }} {{ jh.opis2 }} {{ jh.opis3 }}</h2>
+    <h2><a href="{{ jh.product.get_absolute_url }}">{{ jh.product }}</a></h2>
+    <h1 class="price">{{ jh.price }} zł</h1>
+	<form action="#" method="post">
+		
+	<input type="submit" value="Dodaj">
+	</form>
+	<h3>{{ jh.zawart }}</h3>
+  </div>
+{% endblock %}

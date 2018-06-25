@@ -1,0 +1,20 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja danych firmowych{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Firma została dodana</h1>
+  
+  
+  <p class="acount">Przejdź do edycji danych firmowych</p>
+  <div class="login-form">
+  <p class="acount">{{ request.user.profil.klient.nazwa }}</p>
+  <p class="acount">{{ klient.firma }}</p>
+  <p class="acount">{{ klient.adres }}</p>
+  <p class="acount">{{ klient.kodpocztowy }}</p>
+  <p class="acount">{{ klient.miejscowosc }}</p>
+  <p class="acount">{{ klient.nip }}</p>
+  <h2 class="acount"><a href="{% url 'dashboard' %}">OK</a></h2>
+  
+  </div>
+  {% endblock %}

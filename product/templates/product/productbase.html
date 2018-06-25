@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Mój sklep{% endblock %}</title>
+  <link href="{% static "css/productbase.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+  
+     <span class="logo"><a href="{% url "sitepage:start" %}">COOD21</a></span>
+	 {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li {% if section == "dashboard" %}class="selected"{% endif %}>
+        <a href="{% url "dashboard" %}">Panel klienta</a>
+      </li>
+      <li {% if section == "list" %}class="selected"{% endif %}>
+        <a href="{% url "product:jh_list" %}">Produkty</a>
+      </li>
+      <li {% if section == "zamowienia" %}class="selected"{% endif %}>
+        <a href="#">Zamówienia</a>
+      </li>
+    </ul>
+  {% endif %}
+  
+  <span class="user">
+    {% if request.user.is_authenticated %}
+      Zalogowany {{ request.user.first_name }}!
+      <a href="{% url "logout" %}">Wyloguj</a>
+    {% else %}
+      <a href="{% url "login" %}">Zaloguj</a>
+    {% endif %}
+  </span>
+  </div>
+  <div id="subheader">
+	
+      <li id="profo"><a href="{% url "product:prod_list_stomat" %}">Stomatologia</a></li> 
+      <li id="profo"><a href="{% url "product:prod_list_sip" %}">Medyczne</a></li>  
+		<li id="profo"><a href="{% url "product:prod_list_jed" %}">Jednorazówka</a></li>	   
+      <li id="profo"><a href="{% url "product:prod_list_ds" %}">Dezynfekcja i sterylizacja</a></li> 
+	   <li id="profo"><a href="{% url "product:prod_list_sc" %}">Środki czystości</a></li>
+	  <li id="profo1"><a href="{% url "product:prod_list_biuro" %}">Biurowe</a></li>
+	
+  
+    <div class="cart">
+	{% with total_items=cart|length %}
+		{% if cart|length > 0 %}
+		Zamówienie:
+		<a href="{% url "cart:cart_detail" %}">
+		{{ total_items }} produkt{{ total_items|pluralize:"ów" }}, kwota: 
+		{{ cart.get_total_price }} zł
+		</a>
+	{% else %}
+      Brak produktów w zamówieniu.
+	{% endif %}
+	{% endwith %}
+    </div>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

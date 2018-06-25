@@ -1,0 +1,22 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja konta{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Edycja konta</h1>
+  <p class="acount">Ustawienia konta możesz zmienić za pomocą poniższego formularza:</p>
+   <div class="login-form">
+  <form action="." method="post" enctype="multipart/form-data">
+    {{ user_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Zapisz zmiany"></p>
+  </form>
+  </div>
+  <div id="pedit">
+	{% if request.user.profile.klient.nip != '0000000001' %}
+	<p><a href="{% url "klient:potw_nip" %}">Edytuj dane firmowe</a></p>
+  {% else %}
+<p><a href="{% url "klient:sprfirma" %}">Sprawdź czy istnieje firma</a></p>
+	{% endif %}
+	</div>
+{% endblock %}

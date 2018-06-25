@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Start{% endblock %}</title>
+  <link href="{% static "css/sitepagebase.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+     <span class="logo"><a href="#">COOD21</a></span>
+	 {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li class="selected">
+        <a href="{% url "dashboard" %}">Panel klienta</a>
+      </li>
+      <li class="selected">
+        <a href="{% url "product:jh_list" %}">Produkty</a>
+      </li>
+      <li class="selected">
+        <a href="#">Zamówienia</a>
+      </li>
+    </ul>
+  {% endif %}
+  </div>
+  <div id="subheader">
+  
+   </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

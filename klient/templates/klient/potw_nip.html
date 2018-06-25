@@ -1,0 +1,21 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja danych firmowych{% endblock %}
+
+{% block content %}
+  
+  
+  <h1 class="acount">Potwierdź NIP: {{ request.user.profile.klient.nip }}</h1>
+ 
+  <div id="pspr1">
+	                                  
+  
+			
+			<h2 class="acount"><a href="{{ request.user.profile.klient.nip }}">Potwierdzam</a></h2>
+					
+  </div>
+   
+  
+ 		
+{% endblock %}
+<

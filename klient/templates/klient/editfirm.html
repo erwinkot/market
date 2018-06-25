@@ -1,0 +1,29 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja danych firmowych{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Edycja danych firmowych</h1>
+ 
+  
+  <p class="acount">Za pomocą poniższego formularza możesz edytować dane firmowe dla wystawienia faktury</p>
+  <div class="login-form">
+  <form action="." method="post" enctype="multipart/form-data">
+    {{ klient_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Zapisz zmiany"></p>
+  </form>
+   
+  </div>
+  
+  
+  <div id="lokacje">
+ <p class="acount">Lokalizacje dla dostaw</p>
+  {% for l in lokacjas %}
+   <h3 class="acount1"><a href="{{ l.nazwa }}">{{ l.nazwa }}</a></h3>
+   {% endfor %}
+   <br><br><br>
+   <p class="acount"><a href="{{ klient.nip }}lokacja">Dodaj nową</a></p>
+  </div>
+  
+  {% endblock %}

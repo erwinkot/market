@@ -1,0 +1,62 @@
+{% extends "product/productbase.html" %}
+{% load static %}
+
+{% block title %}
+  {% if product %}{{ product.nazwa }}{% else %}Produkty{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="topper">
+	<div = id="glowa">
+	 <p id="ha1">{% if product %}{{ product.nazwa }}{% else %}Produkty{% endif %}</p>
+	 <p id="ha2">{{ product.producent }}</p><br><br><br><br><br>  <h3 id="ha3">{{ product.cotojest }}</h3> <h4>{{ product.shortopis }}</h4><br> <h5>{{ product.opis }}<h5> 
+	</div>
+	 <div id="fotekpotek">
+	<img id="fopo" src="{% if product.image %}{{ product.image.url }}{% else %}
+{% static "img/no_image.png" %}{% endif %}">
+	</div>
+  </div>
+<div id="main">
+<table class="jh">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Jedn. </th>
+		<th></th>
+		<th></th>
+		<th></th>
+        <th>Nr katalogowy</th>
+        <th>Jedn. miary</th>
+        <th>Zawar. opakowania</th>
+        <th>Cena</th>
+		<th>Akcja</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for jh in jhs %}
+        
+          <tr>
+            <td>
+              {{ jh.label }}
+            </td>
+            <td><a href="{{ jh.get_absolute_url }}">{{ jh.name }}</a></td>
+			<td>{{ jh.opis1 }}</td>
+			<td>{{ jh.opis2 }}</td>
+			<td>{{ jh.opis3 }}</td>
+            <td> 
+              {{ jh.nrkat }}
+            </td>
+            <td>{{ jh.jm }}</td>
+            <td>{{ jh.zawart }} </td>
+            <td>{{ jh.price }} zł </td>
+			
+			</td>
+			
+          </tr>
+        
+      {% endfor %}
+    </tbody>
+  </table>
+ </div>
+
+{% endblock %}

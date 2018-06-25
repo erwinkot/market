@@ -1,0 +1,36 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja danych firmowych{% endblock %}
+
+{% block content %}
+  
+  
+  <h1 class="acount">Sprawdź, czy twoja firma jest bazie?</h1>
+ 
+  <div class="login-form">
+	<form action="." method="post">
+    {{ spr_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Sprwdź"></p>                                  
+  </form>
+   </div>
+  
+  <div id="pspr">
+			<p class="acount">{{ komenda }}</p>
+			{% if  komenda %}
+			<h2 class="acount"> <a href="{% url "klient:new_firm" %}">DODAJ FIRMĘ</a></h2>
+			{% elif klient %}
+			<h3 class="acount"><a href="{{ request.user.profile.klient.nip }}">Dane firmy:</a></h3>
+			<p class="acount">Nazwa:&nbsp&nbsp {{ klient.nazwa }}</p>
+			<p class="acount">Miejscowość: &nbsp&nbsp{{ klient.miejscowosc }}</p>
+			<p class="acount">NIP: &nbsp&nbsp{{ klient.nip }}</p>
+			{% else %}
+			<p class="acount">Czekamy</p><br>
+			{% endif %}
+			
+ </div>
+   
+  
+ 		
+{% endblock %}
+<

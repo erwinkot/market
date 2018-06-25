@@ -1,0 +1,27 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Logowanie</h1>
+  {% if form.errors %}
+    <p class="acount">
+      Nazwa użytkownika lub hasło jest nieprawidłowe.
+      Spróbuj ponownie.
+    </p>
+  {% else %}
+    <p class="acount">Wypełnij poniższy formularz, aby się zalogować. Jeżeli nie masz jeszcze konta, możesz je utworzyć <a href="{% url "register" %}">tutaj</a>.</p>
+  {% endif %}
+  <div class="login-form">
+    <form action="{% url 'login' %}" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p><input type="submit" value="Zaloguj"></p>
+    </form>
+    
+  </div>
+  <div id="plog">
+<p><a href="{% url "password_reset" %}">Zapomniałeś hasła?</a></p>
+	</div>
+{% endblock %}

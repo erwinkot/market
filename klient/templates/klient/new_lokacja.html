@@ -1,0 +1,17 @@
+{% extends "dopustbase.html" %}
+
+{% block title %}Edycja danych firmowych{% endblock %}
+
+{% block content %}
+  <h1 class="acount">Dodaj nową lokalizację</h1>
+  <h2 class="acount">{{ nip }}</h2>
+  
+  <p class="acount">Za pomocą poniższego formularza możesz dodać nową lokalizacje dla dostawy</p>
+  <div class="login-form">
+  <form action="." method="post" enctype="multipart/form-data">
+    {{ new_lokacja_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Zapisz zmiany"></p>
+  </form>
+  </div>
+  {% endblock %}

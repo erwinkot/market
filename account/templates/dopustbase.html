@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/dopustbase.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+  <span class="logo"></span>
+  {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li {% if section == "dashboard" %}class="selected"{% endif %}>
+        <a href="{% url "dashboard" %}">Panel klienta</a>
+      </li>
+      <li {% if section == "list" %}class="selected"{% endif %}>
+        <a href="{% url 'product:jh_list' %}">Produkty</a>
+      </li>
+      <li {% if section == "zamowienia" %}class="selected"{% endif %}>
+        <a href="#">Zamówienia</a>
+      </li>
+    </ul>
+  {% endif %}
+
+  <span class="user">
+    {% if request.user.is_authenticated %}
+      Witaj, {{ request.user.first_name }}!
+      <a href="{% url "logout" %}">Wyloguj</a>
+    {% else %}
+      <a href="{% url "login" %}">Zaloguj</a>
+    {% endif %}
+  </span>
+  </div>
+
+  
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
